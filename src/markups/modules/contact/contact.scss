@@ -1,0 +1,42 @@
+.m-contact {
+	&__title {
+		@extend %h-title;
+	}
+	&__form {
+		margin: 2.4rem 0.5rem 0;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.s-name {
+		@extend %h-input;
+		@extend %h-input-top;
+		margin-right: 6%;
+		border-radius: 1rem 0 0 0;
+	}
+	.s-phone {
+		@extend %h-input;
+		@extend %h-input-top;
+		border-radius: 0 1rem 0 0;
+	}
+	.s-email {
+		@extend %h-input;
+		flex-basis: 100%;
+	}
+	.s-message {
+		@extend %h-input;
+		flex-basis: 100%;
+		height: 3rem;
+		border-radius: 0 0 2rem 2rem;
+	}
+	%h-input {
+		margin-bottom: 0.3rem;
+		padding: 0 0.3rem;
+		border: none;
+		box-sizing: border-box;
+		background-color: #fefefe;
+	}
+	%h-input-top {
+		width: 47%;
+	}
+}

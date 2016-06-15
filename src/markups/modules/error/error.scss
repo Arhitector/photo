@@ -1,0 +1,12 @@
+.m-error {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	font-size: 1.5rem;
+	@supports ( -webkit-background-clip: text) {
+		background: -webkit-linear-gradient(0deg,  #ffff00 0%,#ff0000 12%,#ff8000 25%,#00ff00 37%,#0080ff 50%,#00ff00 62%,#ff8000 75%,#ff8000 75%,#ff0000 88%,#ffff00 100%);
+		-webkit-background-clip: text;
+		color: transparent;
+	}
+}

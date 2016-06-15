@@ -1,0 +1,123 @@
+$skew: skewY(10deg)skewX(10deg);
+.m-content {
+	max-height: calc(100vh - 12vmin);
+	margin: 0 3vw;
+	border: 1px solid rgba(color(light), 0.3);
+	font-family: 'Bad Script', cursive;
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+	@media (orientation:portrait) {
+		flex-direction: column;
+	}
+	@media (orientation:landscape) {
+		flex-direction: row;
+	}
+	.foreignObject {
+		clip-path: url("#clipping5");
+	}
+	&__inner {
+		position: relative;
+		margin: auto;
+		border-radius: 50%;
+		box-shadow: inset 0 0 0.5rem color(dark);
+		background: linear-gradient(135deg, rgba(color(gray),0.1) 0%,rgba(color(gray),1) 40%,rgba(color(gray),1) 60%,rgba(color(gray),0.1) 100%);
+		width: 16.5rem;
+		height: 16.5rem;
+		max-width: 72vmin;
+		max-height: 72vmin;
+	}
+	.s-menu {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		top: 0;
+		overflow: hidden;
+		border-radius: 50%;
+		&__frame {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			left: 0;
+			top: 0;
+			width: 68%;
+			height: 68%;
+			margin: auto;
+			z-index: 100;
+			background-color: color(dark);
+			border-radius: 50%;
+			overflow: hidden;
+		}
+	}
+	.s-wrap {
+		height: 100%;
+		overflow-y: auto;
+	}
+	.s-bio {
+		@extend %h-menu-item;
+	}
+	.s-services {
+		@extend %h-menu-item;
+	}
+	.s-home {
+		@extend %h-menu-item;
+	}
+	.s-gallery {
+		@extend %h-menu-item;
+	}
+	.s-contacts {
+		@extend %h-menu-item;
+	}
+	.s-menu__link-bio {
+		@extend %h-menu-link;
+		top: 13%;
+		left: 11%;
+		transform: rotate(-41deg);
+	}
+	.s-menu__link-services {
+		@extend %h-menu-link;
+		top: 12%;
+		right: 16%;
+		transform: rotate(36deg);
+	}
+	.s-menu__link-gallery {
+		@extend %h-menu-link;
+		left: 1%;
+		top: 57%;
+		transform: rotate(-108deg);
+	}
+	.s-menu__link-home {
+		@extend %h-menu-link;
+		right: 5%;
+		top: 59%;
+		transform: rotate(114deg);
+	}
+	.s-menu__link-contact {
+		bottom: 4%;
+		left: 40%;
+		@extend %h-menu-link;
+	}
+	.s-link {
+		position: absolute;
+		left: 50px;
+		top: 50px;
+	}
+	%h-menu-item {
+		position: absolute;
+		left: 0;
+		top: 0;
+		transform: rotate(-16deg);
+	}
+	%h-menu-link {
+		position: absolute;
+		text-transform: uppercase;
+		font-size: 0.7rem;
+		mix-blend-mode: exclusion;
+		z-index: 300;
+		color: #fff;
+	}
+	%h-menu-item-object {
+		cursor: pointer;
+	}
+}

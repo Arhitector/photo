@@ -1,0 +1,16 @@
+.m-bio {
+	overflow: auto;
+	height: 100%;
+	&__title {
+		@extend %h-title;
+	}
+	&__content {
+		margin: 0 calc(.6rem - 17px) 2.4rem 0.6rem;
+		font-family: arial;
+		font-size: 0.5rem;
+		text-align: justify;
+		-webkit-hyphens: auto;
+		-moz-hyphens: auto;
+		hyphens: auto;
+	}
+}

@@ -1,0 +1,59 @@
+.m-header {
+	position: relative;
+	//padding-bottom: 2.2rem;
+	padding-bottom: 4vmin;
+	padding-left: 4.3rem;
+	text-transform: uppercase;
+	%h-header-item {
+		margin: 0;
+	}
+	&__title {
+		@extend %h-header-item;
+		//padding-top: 1.9em;
+		padding-top: 1.6rem;
+		letter-spacing: 0.04em;
+		//font-size: 1.62rem;
+		font-size: 0.785rem;
+		font-weight: 300;
+		font-family: 'Comfortaa', cursive;
+		line-height: 1;
+	}
+	&__text {
+		font-size: 0.405rem;
+		@extend %h-header-item;
+		display: inline-block;
+		font-weight: 300;
+		position: relative;
+		top: -0.4rem;
+		@supports ( -webkit-background-clip: text) {
+			background: -webkit-linear-gradient(0deg,  #ffff00 0%,#ff0000 12%,#ff8000 25%,#00ff00 37%,#0080ff 50%,#00ff00 62%,#ff8000 75%,#ff8000 75%,#ff0000 88%,#ffff00 100%);
+			-webkit-background-clip: text;
+			color: transparent;
+		}
+		@supports (-moz-transform: scale(1)) {
+			position: relative;
+			background-color: color(dark);
+			color: color(light);
+			&::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				display: block;
+				mix-blend-mode: multiply;
+				background: linear-gradient(90deg,  #ffff00 0%,#ff0000 12%,#ff8000 25%,#00ff00 37%,#0080ff 50%,#00ff00 62%,#ff8000 75%,#ff8000 75%,#ff0000 88%,#ffff00 100%);
+			}
+
+		}
+	}
+	.s-butterfly {
+		fill: #fff;
+		max-width: 1.2rem;
+		position: absolute;
+		left: 2.8rem;
+		top: 50%;
+		transform: translateY(-50%) rotate(-33deg);
+	}
+}

@@ -37,9 +37,8 @@ gulp.task('prettify', function () {
 	return require('./gulp/prettify')();
 });
 //js
-gulp.task('webpack', function () {
-	return require('./gulp/webpack')();
-});
+require('./gulp/webpack');
+
 gulp.task('js', function () {
     return require('./gulp/js-task')();
 });

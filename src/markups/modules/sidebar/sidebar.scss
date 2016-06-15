@@ -1,0 +1,121 @@
+.m-sidebar {
+	overflow: hidden;
+	&__wrap {
+		display: flex;
+		box-sizing: border-box;
+	}
+	&__image {
+		position: relative;
+		padding: 0.3rem;
+		box-sizing: border-box;
+	}
+	.s-image {
+		width: 1rem;
+		height: 1rem;
+		display: block;
+		margin: auto;
+	}
+
+	@media (orientation:portrait) {
+		height: 1.5rem;
+		min-height: 1.5rem;
+		&:nth-child(1) {
+			border-bottom: 1px solid color(gray);
+		}
+		&:nth-last-child(1) {
+			border-top: 1px solid color(gray);
+		}
+		.m-sidebar__wrap {
+			overflow-x: scroll;
+			overflow-y: hidden;
+			width: 100%;
+			height: calc(1.5rem + 17px);
+			padding: 0 0.3rem;
+		}
+		&__image {
+			&:nth-child(1) {
+				&:before {
+					@extend %h-image-portrat;
+					top: 0;
+					right: 0;
+				}
+			}
+			&:nth-child(2n) {
+				&::after {
+					@extend %h-image-portrat;
+					top: 0;
+					left: 0;
+				}
+			}
+			&:nth-child(2n - 1) {
+				&::after {
+					@extend %h-image-portrat;
+					bottom: 0;
+					left: 0;
+				}
+			}
+		}
+		%h-image-portrat {
+			content: "";
+			position: absolute;
+			display: block;
+			width: 1px;
+			height: 0.5rem;
+			background-color: color(gray);
+		}
+	}
+	@media (orientation:landscape) {
+		width: 1.5rem;
+		min-width: 1.5rem;
+		height: 16rem;
+		&:nth-child(1) {
+			border-right: 1px solid color(gray);
+		}
+		&:nth-last-child(1) {
+			border-left: 1px solid color(gray);
+		}
+		.m-sidebar__wrap {
+			overflow-y: scroll;
+			flex-direction: column;
+			width: calc(1.5rem + 17px);
+			height: 16rem;
+			padding: 0.3rem 0;
+		}
+		&__image {
+			min-height: 1.5rem;
+			&:nth-child(1) {
+				&:before {
+					@extend %h-image-landscape;
+					top: 0;
+					right: 0;
+				}
+			}
+			&:nth-child(2n) {
+				&::after {
+					@extend %h-image-landscape;
+					top: 0;
+					left: 0;
+				}
+			}
+			&:nth-child(2n - 1) {
+				&::after {
+					@extend %h-image-landscape;
+					top: 0;
+					right: 0;
+				}
+			}
+		}
+		%h-image-landscape {
+			content: "";
+			position: absolute;
+			display: block;
+			width: 0.5rem;
+			height: 1px;
+			background-color: color(gray);
+		}
+	}
+	.lightbox-img-thumbnail {
+		max-width: 1rem;
+		max-height: 1rem;
+	}
+}
