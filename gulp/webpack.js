@@ -1,39 +1,48 @@
-module.exports = new function (callback) {
-	var webpackStream		= require('webpack-stream'),
-		webpack				= webpackStream.webpack;
-		named				= require('vinyl-named');
-	if (args.env == 'dev') {
-		var isDev = true;
-	} else {
-		var isDev = false;
-	}
-	var biuldWEbpack = false;
-	function done(err, stats) {
-		var biuldWEbpack = true;
-		if (err) {
-			return err;
-		};
-		// gulplog[stats.hasErorrs() ? 'error' : 'info'](stats.toString({
-		// 	colors: true
-		// }));
-	}
+module.exports = function (callback) {
+	var webpack 			= require('webpack'),
+		named				= require('vinyl-named'),
+		gulpUtil 			= require('gulp-util'),
+		reload 				= require('browser-sync').reload;
+
 	var options = {
-		//- watch
-		watch: isDev,
-		//- sourcemap
-		devtool: args.env == 'dev' ? 'source-map' : null,
-
-		module: {
-			loaders: [{
-				test: /\.js$/,
-				include: [
-					__dirname + "/src/scripts",
-					__dirname + "/src/markups"
-				],
-				loader: 'babel?presets[]=es2015'
-			}]
+		// context: __dirname + "/src/markups",
+		// entry: glob.sync('./src/*.js'),
+		entry: './src/markups/index.jsx',
+		output: {
+			// path: __dirname + "/www/js",
+			filename: "index.js",
+			// publickPath: '/js/',
+			library: "[name]"
 		},
-
+		devtool: cfg.isDev ? 'cheap-inline-module-sourcemap' : null,
+		resolve: {
+			root: cfg.src.markups,
+			extensions: JS_FORMATS_ARRAY
+		},
+		resolveLoader: {
+			modulesDirectories: ['node_modules'],
+			moduleTemplates: ['*-loader', '*'],
+			extensions: JS_FORMATS_ARRAY
+		},
+		module: {
+			loaders: [
+				{
+					test: /\.jsx/,
+					include: [
+						/(src\/markups)/,
+						/(src\/scripts)/
+					],
+					loader: 'babel',
+					query: {
+						presets: ['es2015', 'stage-0', 'react'],
+						plugins: [
+							'transform-runtime',
+							'transform-decorators-legacy'
+						]
+					}
+				}
+			]
+		},
 		plugins: [
 			new webpack.NoErrorsPlugin(),
 			new webpack.optimize.CommonsChunkPlugin({
@@ -43,22 +52,18 @@ module.exports = new function (callback) {
 		]
 	};
 	return function () {
-		return gulp.src(cfg.src.markups + '/*.js')
-			.pipe(plumber({
-				errorHandler: function (err) {
-					console.log(err.plugin);
-					console.log(err.message);
-					this.emit('end');
-				}
-			}))
-			.pipe(named())
-			.pipe(webpackStream(options, null, done))
-			.pipe(gulp.dest(cfg.dest.scripts))
-			.on('data', function () {
-				if(biuldWEbpack && !callback.called) {
-					callback.called = true;
-					callback();
-				}
-			});
+		return webpack(options, function(err, stats) {
+		if (err) throw new gulpUtil.PluginError('webpack', err);
+			callback();
+		})
+		.watch({
+			aggregateTimeout: 100
+		}, function(err, stats) {
+			if (err) throw new gulpUtil.PluginError('webpack', err);
+
+			gulpUtil.log('[webpack]', stats.toString());
+
+			reload();
+		});
 	};
 };

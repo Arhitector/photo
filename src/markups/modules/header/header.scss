@@ -1,0 +1,43 @@
+.m-header {
+	text-transform: uppercase;
+	padding-bottom: 2.2rem;
+	padding-left: 5rem;
+	&__title {
+		@extend %h-header-item;
+		padding-top: 1.9em;
+		letter-spacing: 0.04em;
+		font-size: 1.62rem;
+		font-weight: 300;
+		font-family: 'Comfortaa', cursive;
+	}
+	&__text {
+		@extend %h-header-item;
+		display: inline-block;
+		font-weight: 300;
+		@supports ( -webkit-background-clip: text) {
+			background: -webkit-linear-gradient(0deg,  #ffff00 0%,#ff0000 12%,#ff8000 25%,#00ff00 37%,#0080ff 50%,#00ff00 62%,#ff8000 75%,#ff8000 75%,#ff0000 88%,#ffff00 100%);
+			-webkit-background-clip: text;
+			color: transparent;
+		}
+		@supports (-moz-transform: scale(1)) {
+			position: relative;
+			background-color: color(dark);
+			color: color(light);
+			&::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				display: block;
+				mix-blend-mode: multiply;
+				background: linear-gradient(90deg,  #ffff00 0%,#ff0000 12%,#ff8000 25%,#00ff00 37%,#0080ff 50%,#00ff00 62%,#ff8000 75%,#ff8000 75%,#ff0000 88%,#ffff00 100%);
+			}
+
+		}
+	}
+	%h-header-item {
+		margin: 0;
+	}
+}
