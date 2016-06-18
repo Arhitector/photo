@@ -10,15 +10,15 @@ export default class Contact extends React.Component {
 		super();
 		this.state = Store.getAll();
 	}
-	componentDidMount() {
-		Store.on("change", ::this._updateState);
-	}
-	componentWillUnmount() {
-		Store.removeListener("change", ::this._updateState);
-	}
-	_updateState() {
-		this.setState(Store.getAll());
-	}
+	// componentDidMount() {
+	// 	Store.on("change", ::this._updateState);
+	// }
+	// componentWillUnmount() {
+	// 	Store.removeListener("change", ::this._updateState);
+	// }
+	// _updateState() {
+	// 	this.setState(Store.getAll());
+	// }
 	_sendMessage(event) {
 		event.preventDefault();
 		var formData = {

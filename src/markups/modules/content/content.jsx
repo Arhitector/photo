@@ -2,14 +2,19 @@
 
 import React from 'react';
 import { Link } from 'react-router';
+import Store from 'Store';
 
-import Sidebar from '../sidebar/Sidebar.jsx';
+import Sidebar from '../sidebar/Sidebar';
 
 class Content extends React.Component {
+	constructor() {
+		super();
+		this.state = Store.getAll();
+	}
 	render() {
 		return (
 			<main className="m-content">
-				<Sidebar />
+				<Sidebar images={this.state.content.sidebar} />
 				<div className="m-content__inner">
 					<nav className="s-menu">
 						<svg width="100%" height="100%" className="s-bio" >
@@ -39,7 +44,7 @@ class Content extends React.Component {
 					<div className="s-control-left"></div>
 					<div className="s-control-right"></div>
 				</div>
-				<Sidebar />
+				<Sidebar images={this.state.content.sidebar} />
 			</main>
 		);
 	};

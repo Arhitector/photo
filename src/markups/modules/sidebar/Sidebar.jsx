@@ -1,33 +1,96 @@
-'use strict';
+import React, { Component, PropTypes } from 'react';
+import Lightbox from 'react-images';
 
-import React from 'react';
-import LightboxTech from 'react-lightbox-component';
-var Lightbox = LightboxTech.Lightbox;
+class Gallery extends Component {
+	constructor () {
+		super();
 
-module.exports = class Sidebar extends React.Component {
-	render() {
-		var rows = [];
-		var imageServer = 'http://loremflickr.com/300/300?random=';
-		for (var i=0; i < 20; i++) {
-			var images = [
-				{
-					src: imageServer + i,
-					title: '',
-					description: ''
-				}
-			];
-			console.log(images[0]);
-			// rows.push(<a href={imageRender} key={i} className="m-sidebar__image"><img className="s-image" src={imageRender} alt=""/></a>);
-			rows.push(<div key={i} className="m-sidebar__image"><Lightbox images={images} showImageModifiers={false} /></div>);
-		}
+		this.state = {
+			lightboxIsOpen: false,
+			currentImage: 0,
+		};
+
+		this.closeLightbox = this.closeLightbox.bind(this);
+		this.gotoNext = this.gotoNext.bind(this);
+		this.gotoPrevious = this.gotoPrevious.bind(this);
+		this.handleClickImage = this.handleClickImage.bind(this);
+		this.openLightbox = this.openLightbox.bind(this);
+	}
+	openLightbox (index, event) {
+		event.preventDefault();
+		this.setState({
+			currentImage: index,
+			lightboxIsOpen: true,
+		});
+	}
+	closeLightbox () {
+		this.setState({
+			currentImage: 0,
+			lightboxIsOpen: false,
+		});
+	}
+	gotoPrevious () {
+		this.setState({
+			currentImage: this.state.currentImage - 1,
+		});
+	}
+	gotoNext () {
+		this.setState({
+			currentImage: this.state.currentImage + 1,
+		});
+	}
+	handleClickImage () {
+		if (this.state.currentImage === this.props.images.length - 1) return;
+
+		this.gotoNext();
+	}
+	renderGallery () {
+		if (!this.props.images) return;
+		const gallery = this.props.images.map((obj, i) => {
+			return (
+				<a
+					href={obj.src}
+					key={i}
+					onClick={(e) => this.openLightbox(i, e)}
+					className="m-sidebar__image"
+				>
+					<img
+						src={obj.thumbnail}
+						className="s-image"
+					/>
+				</a>
+			);
+		});
+
+		return gallery;
+	}
+	render () {
 		return (
 			<div className="m-sidebar">
 				<div className="m-sidebar__wrap">
-				{rows.map(function(rows) {
-					return rows;
-				})}
+					{this.renderGallery()}
+					<Lightbox
+						currentImage={this.state.currentImage}
+						images={this.props.images}
+						isOpen={this.state.lightboxIsOpen}
+						onClickPrev={this.gotoPrevious}
+						onClickNext={this.gotoNext}
+						onClickImage={this.handleClickImage}
+						onClose={this.closeLightbox}
+						theme={this.props.theme}
+					/>
 				</div>
 			</div>
 		);
 	}
 };
+
+Gallery.displayName = 'Gallery';
+Gallery.propTypes = {
+	heading: PropTypes.string,
+	images: PropTypes.array,
+	sepia: PropTypes.bool,
+	subheading: PropTypes.string,
+};
+
+export default Gallery;

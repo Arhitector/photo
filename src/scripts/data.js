@@ -20,6 +20,80 @@ module.exports = {
 			"content": {
 				"text": "some text"
 			}
-		}
+		},
+		"gallery": [
+			{
+				"src": "http://loremflickr.com/300/300?random=1"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=2"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=3"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=3"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=4"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=5"
+			}
+		],
+		"sidebar": [
+			{
+				"src": "http://loremflickr.com/300/300?random=1",
+				"thumbnail": "http://loremflickr.com/30/30?random=1"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=2",
+				"thumbnail": "http://loremflickr.com/30/30?random=2"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=3",
+				"thumbnail": "http://loremflickr.com/30/30?random=3"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=3",
+				"thumbnail": "http://loremflickr.com/30/30?random=3"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=4",
+				"thumbnail": "http://loremflickr.com/30/30?random=4"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=5",
+				"thumbnail": "http://loremflickr.com/30/30?random=5"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=6",
+				"thumbnail": "http://loremflickr.com/30/30?random=6"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=7",
+				"thumbnail": "http://loremflickr.com/30/30?random=7"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=8",
+				"thumbnail": "http://loremflickr.com/30/30?random=8"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=9",
+				"thumbnail": "http://loremflickr.com/30/30?random=9"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=10",
+				"thumbnail": "http://loremflickr.com/30/30?random=10"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=11",
+				"thumbnail": "http://loremflickr.com/30/30?random=11"
+			},
+			{
+				"src": "http://loremflickr.com/300/300?random=12",
+				"thumbnail": "http://loremflickr.com/30/30?random=12"
+			}
+		]
 	}
 }

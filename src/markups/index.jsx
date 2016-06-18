@@ -6,7 +6,6 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import Store from 'Store';
 
-
 import Header from './modules/header/header.jsx';
 import Content from './modules/content/content.jsx';
 import Footer from './modules/footer/footer.jsx';
@@ -22,21 +21,15 @@ class PhotoPortfolio extends React.Component {
 		super();
 		this.state = Store.getAll();
 	}
+	getStateData() {
+		return 12341234;
+	}
 	render() {
 		return (
 			<div className="g-wrapper__inner">
 				<Header header={this.state.header} />
-				<Content content={this.state.content} context={this.props.children} />
+				<Content context={this.props.children} content={this.state.content}/>
 				<Footer footer={this.state.footer} />
-			</div>
-		);
-	};
-};
-class ErroPage extends React.Component {
-	render() {
-		return (
-			<div className="g-error-page">
-				404
 			</div>
 		);
 	};
@@ -46,8 +39,8 @@ var routes = (
 	<Router history={hashHistory}>
 		<Route path="/" component={PhotoPortfolio} >
 			<IndexRoute component={Home}></IndexRoute>
-			<Route path="bio" title="title" component={Bio}></Route>
-			<Route path="contact" component={Contact}></Route>
+			<Route path="bio" component={Bio}></Route>
+			<Route path="contact" component={Contact} ></Route>
 			<Route path="gallery" component={Gallery}></Route>
 			<Route path="*" component={Error}/>
 		</Route>

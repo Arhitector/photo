@@ -1,19 +1,18 @@
 'use strict';
 
 import React from 'react';
-
-import bioData from 'data';
+import Store from 'Store';
 
 export default class Bio extends React.Component {
 	constructor() {
 		super();
+		this.state = Store.getAll();
 	}
 	render() {
-		console.log(this.props.content);
 		return (
 			<div className="m-bio" >
-				<div className="m-bio__title">{bioData.content.bio.title}</div>
-				<div className="m-bio__content">{bioData.content.bio.text}</div>
+				<div className="m-bio__title">{this.state.content.bio.title}</div>
+				<div className="m-bio__content">{this.state.content.bio.text}</div>
 			</div>
 		)
 	}

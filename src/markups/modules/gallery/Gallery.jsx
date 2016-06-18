@@ -2,6 +2,7 @@
 
 import React from 'react';
 import ReactSwipe from 'react-swipe';
+import Store from 'Store';
 
 const swipeOptions = {
 	speed: 400,
@@ -9,21 +10,23 @@ const swipeOptions = {
 };
 
 export default class Carousel extends React.Component {
+	constructor() {
+		super();
+		this.state = Store.getAll();
+	}
+	createGallery() {
+		var amountImages = this.state.content.gallery.length;
+		var counter = 0;
+		var gallery = [];
+		for (counter = 0; counter < amountImages; counter++) {
+			gallery.push(<div key={counter} ><img className="s-image" src={this.state.content.gallery[counter].src} alt=""/></div>);
+		}
+		return gallery;
+	};
 	render() {
 		return (
 			<ReactSwipe className="m-gallery carousel" swipeOptions={swipeOptions} >
-				<div>
-					<img className="s-image" src="http://loremflickr.com/300/300?random=1" alt=""/>
-				</div>
-				<div>
-					<img className="s-image" src="http://loremflickr.com/300/300?random=2" alt=""/>
-				</div>
-				<div>
-					<img className="s-image" src="http://loremflickr.com/300/300?random=3" alt=""/>
-				</div>
-				<div>
-					<img className="s-image" src="http://loremflickr.com/300/300?random=4" alt=""/>
-				</div>
+				{this.createGallery()}
 			</ReactSwipe>
 		);
 	}
